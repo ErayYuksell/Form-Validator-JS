@@ -1,0 +1,2 @@
+Bir kullanıcı olustuturken girilen bilgilerin javascript tarafında istenen özellikleri kontrol edilsin server kısmını katmayarak uygulamayı yormamak için 
+username , Email , Phone , Password , Re - Password kısımlarından olusucak
