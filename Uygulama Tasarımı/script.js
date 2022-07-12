@@ -12,44 +12,25 @@ function error(input, message){
 function success(input){
     input.className='form-control is-valid';
 }
-const validateEmail = (email) => {
+const checkemail = (email) => {
     return String(email)
       .toLowerCase()
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
-
+function checkRequired(inputs){
+    inputs.forEach(function(input){
+        if(input.value ===''){
+            error(input,`${input.id} is required.`);
+        }else{
+            success(input);
+        }
+    });
+}
 form.addEventListener('submit',function(e){
 e.preventDefault();
 
-if(username.value === ''){
-    error(username,'username gerekli'); 
-}else{
-    success(username);
-}
-if(email.value === ''){
-    error(email,'email gerekli');
-}else if(validateEmail(!email.value)){
-    error(email,'Düzgün bir mail adresi giriniz');
-}
-else{
-    success(email);
-
-}
-if(password.value === ''){
-    error(password,'password gerekli');
-    
-}else{
-    success(password);
-
-}
-if(repassword.value === ''){
-    error(repassword,'repassword gerekli');
-    
-}else{
-    success(repassword);
-
-}
-
+checkRequired([username,email,password,repassword]);
+checkemail(email);
 });
