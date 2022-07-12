@@ -28,9 +28,27 @@ function checkRequired(inputs){
         }
     });
 }
+function checklength(input,min,max){
+    if(input.value.length < min){
+        error(input, `${input.id} en az ${min} karakter kadar olmalıdır`);
+    }else if(input.value.length > max){
+        error(input, `${input.id} en fazla ${max} karakter kadar olmalıdır`);
+    }else{
+        success(input);
+    }
+}
+function checkpassword(input1,input2){
+    if(input1.value !== input2.value){
+        error(input2,'Parolalar eşleşmiyor')
+    }
+}
 form.addEventListener('submit',function(e){
 e.preventDefault();
 
 checkRequired([username,email,password,repassword]);
 checkemail(email);
+checklength(username,7,15);
+checklength(password,7,12);
+checkpassword(password,repassword);
+
 });
